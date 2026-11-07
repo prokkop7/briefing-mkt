@@ -73,7 +73,7 @@ const controller=new AbortController(),timeout=setTimeout(()=>controller.abort()
 try{
 const payload={tipo:'briefing',origem:'pagina-briefing',source:'mediamorphix-briefing',version:'2',submittedAt:new Date().toISOString(),name:answers.name,business:answers.business,phone:answers.phone,email:answers.email,priority:answers.priority,channels:answers.channels,problem:answers.problem,site:answers.site,goal:answers.goal,time:answers.time,notes:answers.notes,suggestedFocus:focus,consent:true};
 const fields=new URLSearchParams();
-const normalizedPhone=answers.phone.replace(/\\D/g,'');
+const normalizedPhone=answers.phone.replace(/\D/g,'');
 const data={...payload,nome:answers.name,empresa:answers.business,telefone:normalizedPhone,interesse:answers.priority,mensagem:answers.notes,consentimento:'true',submissionId:(crypto?.randomUUID?.()||String(Date.now())),urlOrigem:location.href,channels:JSON.stringify(answers.channels)};
 for(const [key,value] of Object.entries(data))fields.set(key,String(value ?? ''));
 fields.set('payload',JSON.stringify(payload));
